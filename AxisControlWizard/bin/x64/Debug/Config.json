@@ -1,0 +1,38 @@
+[
+  {
+    "Models": [
+      {
+        "SerialNumbers": {
+          "Parameter1_val": "",
+          "Parameter2_val": "",
+          "Gain_val": "10",
+          "ExposureTime_val": "15000",
+          "Gamma_val": "2.03",
+          "Save_Image_Path_val": "E:\\DIP Temp\\Image Temp"
+        }
+      },
+      {
+        "SerialNumbers": {
+          "Parameter1_val": "",
+          "Parameter2_val": ""
+        }
+      }
+    ]
+  },
+  {
+    "Models": [
+      {
+        "SerialNumbers": {
+          "Parameter1_val": "",
+          "Parameter2_val": ""
+        }
+      },
+      {
+        "SerialNumbers": {
+          "Parameter1_val": "",
+          "Parameter2_val": ""
+        }
+      }
+    ]
+  }
+]

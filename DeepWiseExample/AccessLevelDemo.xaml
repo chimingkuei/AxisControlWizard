@@ -1,0 +1,88 @@
+﻿<Window x:Class="DeepWise.Test.AccessLevelDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeepWise.Test"
+        xmlns:UI="clr-namespace:DeepWise.Controls;assembly=dw_base"
+        xmlns:dw = "clr-namespace:DeepWise;assembly=dw_base"
+        mc:Ignorable="d"
+        Title="LogInDemo"
+        Width="900" Height="600"
+        WindowStartupLocation="CenterScreen" x:Name="this">
+    <Grid Background="#A0A0A0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TabControl>
+            <TabItem Header="Accounts">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="dataGrid"/>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <GroupBox Header="PropertyGrid">
+                            <UI:PropertyGrid x:Name="propertyGrid" >
+                                <!--<local:LogInDemoItem/>-->
+                            </UI:PropertyGrid>
+                        </GroupBox>
+                        <TextBlock Grid.Row="1" Text="Click the button below to log in or log out." FontSize="24" TextWrapping="Wrap" Foreground="Blue" Margin="4"/>
+                    </Grid>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Operator" IsEnabled="{dw:Lv Operator}"/>
+            <TabItem Header="Engineer" IsEnabled="{dw:Lv Engineer}"/>
+            <TabItem Header="Engineer(Visibility)" Visibility="{dw:Lv Engineer}"/>
+            <TabItem Header="Administrator" IsEnabled="{dw:Lv Administrator}"/>
+        </TabControl>
+        <StatusBar Name="statusBar" Grid.Row="1" Height="40" FontSize="16" Grid.ColumnSpan="2">
+            <StatusBar.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid Margin="5,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </ItemsPanelTemplate>
+            </StatusBar.ItemsPanel>
+            <TextBlock Text="Welcome to AccessLevel Demo" Foreground="#646464"/>
+            <StatusBarItem Grid.Column="1" Margin="4,0" DataContext="{x:Static dw:EventLog.Default}">
+                <StatusBarItem.Resources>
+                    <UI:MessageLevelToImageConverter x:Key="cvt_Icon"/>
+                    <local:NewItemConverter x:Key="cvt_Border"/>
+                </StatusBarItem.Resources>
+            </StatusBarItem>
+
+            <StatusBarItem Grid.Column="2" Margin="4,0" DataContext="{Binding CurrentUser, Source={x:Static dw:AccessController.Default}}">
+                <Grid>
+                    <Button x:Name="btn_LogIn" Content=" Login " Click="TextBlock_MouseDown" Visibility="{Binding Converter={x:Static UI:ObjectIsEmptyToBooleanConverter.Instance}}"/>
+                    <Button x:Name="btn_User" BorderThickness="0" Background="{x:Null}" Click="TextBlock_MouseDown" Visibility="{Binding Converter={x:Static UI:ObjectIsNotEmptyToBooleanConverter.Instance}}">
+                        <TextBlock>
+                            <Run Text="{Binding Name}"/>
+                            <Run Text="(" Foreground="DimGray"/>
+                            <Run Text="{Binding AccessLevel}" Foreground="DimGray"/>
+                            <Run Text=")" Foreground="DimGray"/>
+                        </TextBlock>
+                    </Button>
+
+                </Grid>
+            </StatusBarItem>
+        </StatusBar>
+        <Popup x:Name="pop" PlacementTarget="{Binding ElementName=statusBar}" VerticalOffset="-170" Placement="Center" StaysOpen="False" Height="300">
+            <Border CornerRadius="5" BorderThickness="1" Width="{Binding ElementName=this}">
+                <UI:MessageLogView Grid.Row="1"/>
+            </Border>
+        </Popup>
+    </Grid>
+</Window>

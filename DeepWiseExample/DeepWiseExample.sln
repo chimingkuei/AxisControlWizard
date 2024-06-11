@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepWiseExample", "DeepWiseExample.csproj", "{6227116D-0941-462E-8371-1E1FE76F10AE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepWise.Utility", "..\DeepWise.Utility\DeepWise.Utility.csproj", "{FA95CB42-BDC1-4716-9061-2BDD72C9572D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6227116D-0941-462E-8371-1E1FE76F10AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6227116D-0941-462E-8371-1E1FE76F10AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6227116D-0941-462E-8371-1E1FE76F10AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6227116D-0941-462E-8371-1E1FE76F10AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA95CB42-BDC1-4716-9061-2BDD72C9572D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA95CB42-BDC1-4716-9061-2BDD72C9572D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA95CB42-BDC1-4716-9061-2BDD72C9572D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA95CB42-BDC1-4716-9061-2BDD72C9572D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07A27E1D-013F-4C7E-86D1-B2A24F11A57E}
+	EndGlobalSection
+EndGlobal

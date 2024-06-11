@@ -1,0 +1,63 @@
+﻿<Window x:Class="DeepWise.Test.DefectsViewDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeepWise.Test"
+        xmlns:UI="clr-namespace:DeepWise.Controls;assembly=dw_base"
+        mc:Ignorable="d"
+        Title="DisplayDemo"
+        WindowStartupLocation="CenterScreen" Height="600" Width="1200">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="listView" Grid.RowSpan="2" SelectionMode="Single" MinWidth="120" SelectionChanged="listView_SelectionChanged">
+     
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                        <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <Image Source="{Binding Thumbnail}" HorizontalAlignment="Center" VerticalAlignment="Top" Width="250" Height="200"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <UI:Display x:Name="display" Grid.Column="1" AutoStretched="True"/>
+        <StatusBar Grid.Column="1" Grid.Row="1" DataContext="{Binding ElementName=display}">
+            <StatusBarItem HorizontalAlignment="Left">
+                <TextBlock Text="{Binding CursorPosition}"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Left">
+                <TextBlock Text="="/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Left">
+                <TextBlock Text="{Binding CursorPositionPixelValue,StringFormat='X'}"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Stretch"/>
+            <StatusBarItem HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5" >
+                <WrapPanel>
+                    <TextBlock Text="ZoomLevel :" VerticalAlignment="Center" Margin="5"/>
+                    <TextBlock Text="{Binding ZoomLevel, StringFormat='0.##'}" VerticalAlignment="Center" Margin="5"/>
+                    <CheckBox Content="AutoStretch" IsChecked="{Binding AutoStretched}" VerticalAlignment="Center" Margin="5"/>
+                    <Button  Content="Stretch" Command="{Binding StretchCommand}" VerticalAlignment="Center" Margin="5"/>
+                    <Button  Content="Save Image" Command="{Binding SaveCommand}" VerticalAlignment="Center" Margin="5"/>
+                </WrapPanel>
+            </StatusBarItem>
+        </StatusBar>
+        <StackPanel  Grid.Column="2" Grid.ColumnSpan="2" Width="200">
+            <Button x:Name="btn_AddA" Content="新增瑕疵A" Margin="10" Height="40" Click="AddDefect"/>
+            <Button x:Name="btn_AddB" Content="新增瑕疵B" Margin="10,0,10,10" Height="40"  Click="AddDefect"/>
+            <Border Margin="10,0,10,10" Height="40" BorderThickness="1" BorderBrush="#646464" Background="LightYellow">
+                <TextBlock Text="點擊標記右鍵移除"  VerticalAlignment="Center" TextAlignment="Center" />
+
+            </Border>
+        </StackPanel>
+    </Grid>
+</Window>

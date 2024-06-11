@@ -1,0 +1,18 @@
+﻿<Window x:Class="DeepWise.Test.CancelableMessageBoxDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeepWise.Test"
+        xmlns:UI="clr-namespace:DeepWise.Controls;assembly=dw_base"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MessageBoxDemo" SizeToContent="Height" Width="280" x:Name="this">
+    <Window.Resources>
+        <UI:ObjectIsNotEmptyToBooleanConverter x:Key="cvt"/>
+    </Window.Resources>
+    <StackPanel>
+        <Button x:Name="btn_Show" Margin="10,10,10,10" Height="48" Content="Show MessageBox" Click="Button_Click"/>
+        <!--<Button x:Name="btn_Cancel" IsEnabled="{Binding CancelHandle,ElementName=this,Converter={StaticResource cvt}}" Margin="10" Height="48" Content="Cancel" Click="Button_Click"/>-->
+    </StackPanel>
+</Window>

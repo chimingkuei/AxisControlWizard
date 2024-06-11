@@ -1,0 +1,35 @@
+﻿<ItemsControl x:Class="DeepWise.Devices.DevicesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeepWise.Devices"
+             xmlns:UI="clr-namespace:DeepWise.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="220">
+    <ItemsControl.Resources>
+        <local:DeviceNameConverter x:Key="cvtName"/>
+        <local:InvBooleanToVisibilityConverter x:Key="cvtVis"/>
+    </ItemsControl.Resources>
+    <ItemsControl.ItemTemplate>
+        <DataTemplate>
+            <Grid Margin="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <UI:StatusIndicator x:Name="indicator" Width="32" Height="32"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="1">
+                    <TextBlock Text="{Binding Converter={StaticResource cvtName}}"  FontSize="18" VerticalAlignment="Center" Margin="10,0"/>
+                    <TextBlock x:Name="tbx_exclamation" Visibility="Collapsed" Text="!" FontWeight="Bold" Foreground="Red"  FontSize="18" VerticalAlignment="Center"/>
+
+                </StackPanel>
+                <Button Visibility="{Binding IsOpened,Converter={StaticResource cvtVis}}" BorderThickness="0" Background="{x:Null}" VerticalAlignment="Center" Grid.Column="2" Click="Button_Click">
+                    <Image Source="/dw_base;component/Resources/icon16_restart.png" Stretch="None"/>
+                </Button>
+            </Grid>
+        </DataTemplate>
+    </ItemsControl.ItemTemplate>
+    <local:CameraIDS Name="SampleDevice"/>
+</ItemsControl>

@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="DeepWise.Controls.MessageLogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:DeepWise.Controls" 
+             xmlns:dw="clr-namespace:DeepWise" 
+             xmlns:localization="clr-namespace:DeepWise.Localization"
+             mc:Ignorable="d" x:Name="this">
+    <UserControl.Resources>
+        <localization:MemberDisplayNameConverter x:Key="memberConverter"/>
+        <local:MessageLevelToImageConverter x:Key="imgCoverter"/>
+        <local:MessageCountConverter x:Key="cvt_MsgCount"/>
+        <local:StringIsNotEmptyToVisibilityConverter x:Key="cvt_StrNotEmpty2Visibility"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar>
+                <Button x:Name="BTN_ShowError" Tag="Error" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{x:Static local:MessageLogView.ErrorIcon}" Height="24" Margin="4,0"/>
+                        <TextBlock VerticalAlignment="Center">
+                            <Run Text="{Binding ErrorNumber,Mode=OneWay}"/>
+                            <Run Text=" 錯誤 "/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BTN_ShowWarning" Tag="Warning" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{x:Static local:MessageLogView.WarningIcon}" Height="24" Margin="4,0"/>
+                        <TextBlock VerticalAlignment="Center">
+                            <Run Text="{Binding WarningNumber,Mode=OneWay}"/>
+                            <Run Text=" 警告 "/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button x:Name="BTN_ShowInfo" Tag="Info" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{x:Static local:MessageLogView.InfoIcon}" Height="24" Margin="4,0"/>
+                        <TextBlock VerticalAlignment="Center">
+                            <Run Text="{Binding InfoNumber,Mode=OneWay}"/>
+                            <Run Text=" 訊息 "/>
+                        </TextBlock>
+                    </StackPanel>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid Name="dataGrid" AutoGenerateColumns="False" Grid.Row="1" IsReadOnly="True">
+            <DataGrid.Columns >
+                <DataGridTemplateColumn Header="Level">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Image Width="16" Height="16" Source="{Binding Path='Level', Converter={StaticResource imgCoverter}}"/>
+                                <TextBlock Text="{Binding Path='Level'}" Margin="4,0,0,0"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Caption" Binding="{Binding Path='Caption'}"/>
+                <DataGridTextColumn Header="Message" MaxWidth="1000" Binding="{Binding Path='Description'}"/>
+                <!--<DataGridTextColumn Header="Source" Binding="{Binding Path='Source'}"/>-->
+                <DataGridTextColumn Header="Time" Binding="{Binding Path='DateTime'}" />
+                <DataGridTemplateColumn Header="StackTrace" x:Name="dgColum">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Click" Click="Button_Click_1" Visibility="{Binding StackTrace, Converter={StaticResource cvt_StrNotEmpty2Visibility}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FA95CB42-BDC1-4716-9061-2BDD72C9572D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DeepWise</RootNamespace>
+    <AssemblyName>dw_base</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MAT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;MAT</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;MAT</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;MAT</DefineConstants>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Basler.Pylon, Version=1.2.0.0, Culture=neutral, PublicKeyToken=e389355f398382ab, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Basler.Pylon.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="ids_peak_dotnet, Version=1.4.1.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\ids_peak_dotnet.dll</HintPath>
+    </Reference>
+    <Reference Include="ids_peak_ipl_dotnet, Version=1.3.2.7, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\ids_peak_ipl_dotnet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>packages\OpenCvSharp4.4.6.0.20220608\lib\net48\OpenCvSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
+      <HintPath>packages\OpenCvSharp4.Extensions.4.6.0.20220608\lib\net48\OpenCvSharp.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.5.0.3\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="uEyeDotNet, Version=1.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\uEyeDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessControls\LvExtension.cs" />
+    <Compile Include="AccessControls\AccessController.cs" />
+    <Compile Include="AccessControls\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AccessControls\User.cs" />
+    <Compile Include="Controls\Display%28Bitmap%29.cs" />
+    <Compile Include="Controls\Display%28Interaction%29.cs" />
+    <Compile Include="Controls\Display%28Commands%29.cs" />
+    <Compile Include="Controls\CollectionEditor.xaml.cs">
+      <DependentUpon>CollectionEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Converters.cs" />
+    <Compile Include="Controls\ImageListView.xaml.cs">
+      <DependentUpon>ImageListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Interactivity\Behaviors\DefectViewer.cs" />
+    <Compile Include="Controls\Interactivity\Behaviors\PolygonBuilder.cs" />
+    <Compile Include="Controls\ValueTable.xaml.cs">
+      <DependentUpon>ValueTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PropertyGrid.xaml.cs">
+      <DependentUpon>PropertyGrid.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Wrapper.cs" />
+    <Compile Include="DeepWiseApplication.cs" />
+    <Compile Include="EmbeddingPython\EmbeddingPython.cs" />
+    <Compile Include="Extensions\LinqExt.cs" />
+    <Compile Include="Extensions\ZipFile.cs" />
+    <Compile Include="Data\Defect.cs" />
+    <Compile Include="Devices\CameraBasler.cs" />
+    <Compile Include="Devices\DevicesIniWindow.xaml.cs">
+      <DependentUpon>DevicesIniWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DictionaryView.xaml.cs">
+      <DependentUpon>DictionaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DigitalClock.cs" />
+    <Compile Include="Controls\Interactivity\Behaviors\MaskPainter.cs" />
+    <Compile Include="Controls\Interactivity\ROI\RectMark.cs" />
+    <Compile Include="Controls\Interactivity\ROI\RingROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI\CircleROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI\CircleMark.cs" />
+    <Compile Include="Controls\Interactivity\ROI\RotatableRectROI.cs" />
+    <Compile Include="Controls\Interactivity\ShapeExtension.cs" />
+    <Compile Include="Controls\NamingDialog.xaml.cs">
+      <DependentUpon>NamingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\StatusIndicator.xaml.cs">
+      <DependentUpon>StatusIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\DictionaryPointItem.cs" />
+    <Compile Include="Devices\CameraIDS_U3.cs" />
+    <Compile Include="Devices\DevicesView.xaml.cs">
+      <DependentUpon>DevicesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Devices\IDevice.cs" />
+    <Compile Include="DImage.cs" />
+    <Compile Include="Expression\Dynamic\DynamicValueEditor.xaml.cs">
+      <DependentUpon>DynamicValueEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Expression\Dynamic\NamingDialog.xaml.cs">
+      <DependentUpon>NamingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Expression\VariableView.xaml.cs">
+      <DependentUpon>VariableView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ColorExtensions.cs" />
+    <Compile Include="Extensions\CoopBitmap.cs" />
+    <Compile Include="Controls\Interactivity\Behaviors\ShapCropper.cs" />
+    <Compile Include="Controls\Interactivity\DisplayBehavior.cs" />
+    <Compile Include="Controls\Interactivity\ROI\RectROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI\LineMark.cs" />
+    <Compile Include="Controls\Interactivity\ROI\PointMark.cs" />
+    <Compile Include="Controls\Interactivity\ROI\SegmentDetectionROI.cs" />
+    <Compile Include="Controls\Interactivity\InteractiveObject.cs" />
+    <Compile Include="Controls\Display.xaml.cs">
+      <DependentUpon>Display.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28Basic%29RingROI.cs" />
+    <Compile Include="CoordinateTransformator.cs" />
+    <Compile Include="Controls\Interactivity\BehaviorControllers\MaskDrawerGDI.cs" />
+    <Compile Include="Controls\Interactivity\BehaviorControllers\PolygonBuilderGDI.cs" />
+    <Compile Include="Controls\Interactivity\BehaviorControllers\ShapCropperGDI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28Basic%29AnglurRectROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28Basic%29RectROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28Basic%29CircleROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28Basic%29RingSectorROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28EdgeDetection%29CircleDetectionROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28EdgeDetection%29NewArcDetectionROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28EdgeDetection%29PointDetectionROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\%28EdgeDetection%29SegmentDetectionROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\InteractiveROIGDI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\WatcherLineDetROI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\[Obsolete]%28EdgeDetection%29ArcDetectionROI.cs" />
+    <Compile Include="Extensions\WindowsAPI.cs" />
+    <Compile Include="Controls\Interactivity\InteractiveObjectGDI.cs" />
+    <Compile Include="Controls\Interactivity\DisplayGDI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Interactivity\DisplayControllerGDI.cs" />
+    <Compile Include="Controls\Interactivity\ROI%28GDI%29\ROIDefaultSetting.cs" />
+    <Compile Include="Data\Config.cs" />
+    <Compile Include="Devices\Camera.cs" />
+    <Compile Include="Devices\CameraIDS.cs" />
+    <Compile Include="Expression\Dynamic\DynamicExpression.Constructor.cs" />
+    <Compile Include="Expression\Dynamic\Extensions.cs" />
+    <Compile Include="Expression\Dynamic\ExpressionOperator.cs" />
+    <Compile Include="Expression\Dynamic\Variable.cs" />
+    <Compile Include="Expression\Dynamic\DynamicExpression.cs" />
+    <Compile Include="Expression\ExpressionEvaluator.cs" />
+    <Compile Include="Expression\Functions.cs" />
+    <Compile Include="Expression\Interfaces.cs" />
+    <Compile Include="Expression\Tokenizer.cs" />
+    <Compile Include="Extensions\ControlExtensions.cs" />
+    <Compile Include="Extensions\JsonExtensions.cs" />
+    <Compile Include="Json\BaseTypeConverter.cs" />
+    <Compile Include="Localization\LocalizeDictionary.cs" />
+    <Compile Include="Metrology\EdgeDetection.cs" />
+    <Compile Include="Metrology\EdgeDetectionSetting.cs" />
+    <Compile Include="NamingValidator.cs" />
+    <Compile Include="Devices\%28暫定%29ICamera.cs" />
+    <Compile Include="Devices\WebCamGrabber.cs" />
+    <Compile Include="Localization\MemberDisplayNameConverter.cs" />
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Extensions\BitmapExtensions.cs" />
+    <Compile Include="Extensions\AttributeHelper.cs" />
+    <Compile Include="Extensions\NotepadHelper.cs" />
+    <Compile Include="Shapes\Fitting.cs" />
+    <Compile Include="Shapes\Geometry.cs" />
+    <Compile Include="Shapes\Interfaces.cs" />
+    <Compile Include="Shapes\Shapes.Arc.cs" />
+    <Compile Include="Shapes\Shapes.Circle.cs" />
+    <Compile Include="Shapes\Shapes.Ellipse.cs" />
+    <Compile Include="Shapes\Shapes.Line.cs" />
+    <Compile Include="Shapes\Shapes.Polygon.cs" />
+    <Compile Include="Shapes\Shapes.Rect.cs" />
+    <Compile Include="Shapes\Shapes.RectRotatable.cs" />
+    <Compile Include="Shapes\Shapes.Ring.cs" />
+    <Compile Include="Shapes\Shapes.RingSector.cs" />
+    <Compile Include="Shapes\Shapes.Segment.cs" />
+    <Compile Include="Shapes\Basic.cs" />
+    <Compile Include="Threading\SuspendableCancellationTokenSource.cs" />
+    <Compile Include="Windows\BitmapSimpleView.xaml.cs">
+      <DependentUpon>BitmapSimpleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AccessControls\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CollectionEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ImageListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ValueTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PropertyGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DevicesIniWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\DictionaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Display.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\MessageLogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NamingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="Controls\MessageLogView.xaml.cs">
+      <DependentUpon>MessageLogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Attributes.cs" />
+    <Compile Include="Devices\Dimmer.cs" />
+    <Compile Include="EventLog.cs" />
+    <Compile Include="Localization\LocalizedDisplayNameAttribute.cs" />
+    <Page Include="Controls\StatusIndicator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Devices\DevicesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Expression\Dynamic\DynamicValueEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Expression\Dynamic\NamingDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Expression\VariableView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\BitmapSimpleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NumericalComparisom.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.zh-TW.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.zh-TW.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.zh-TW.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.zh-TW.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-check-mark-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-cross-mark-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="References\Basler.Pylon.dll" />
+    <Content Include="References\ids_peak_dotnet.dll" />
+    <Content Include="References\ids_peak_ipl_dotnet.dll" />
+    <Content Include="References\ids_peak_ipl_dotnet_interface.dll" />
+    <Content Include="References\uEyeDotNet.dll" />
+    <Resource Include="Resources\icon16_cross.png" />
+    <Resource Include="Resources\icon18_up.png" />
+    <Resource Include="Resources\icon18_down.png" />
+    <Resource Include="Resources\icon18_delete.png" />
+    <Resource Include="Resources\icon16_restart.png" />
+    <Resource Include="Resources\icon24_number0.png" />
+    <Resource Include="Resources\icon24_number1.png" />
+    <Resource Include="Resources\icon24_number3.png" />
+    <Resource Include="Resources\icon24_number2.png" />
+    <Resource Include="Resources\baseline_note_add_black_24dp.png" />
+    <Resource Include="Resources\baseline_file_copy_black_24dp.png" />
+    <Resource Include="Resources\baseline_drive_file_rename_outline_black_24dp.png" />
+    <Resource Include="Resources\baseline_delete_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

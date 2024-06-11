@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MotionControllers.UI.MotionStatusLightsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MotionControllers.UI"
+             mc:Ignorable="d" x:Name="this">
+    <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="local:MotionStatusIndicator">
+                <Setter Property="AxisID" Value="{Binding AxisID,ElementName=this}"/>
+            </Style>
+        </DockPanel.Resources>
+        <local:MotionStatusIndicator MotionStatus="GER" x:Name="IND_GER"/>
+        <local:MotionStatusIndicator MotionStatus="POSTD" x:Name="IND_POSTD"/>
+        <local:MotionStatusIndicator MotionStatus="PRED" x:Name="IND_PRED"/>
+        <local:MotionStatusIndicator MotionStatus="BLD" x:Name="IND_BLD"/>
+        <local:MotionStatusIndicator MotionStatus="ASTP" x:Name="IND_ASTP"/>
+        <local:MotionStatusIndicator MotionStatus="JOG" x:Name="IND_JOG"/>
+        <local:MotionStatusIndicator MotionStatus="WAIT" x:Name="IND_WAIT"/>
+        <local:MotionStatusIndicator MotionStatus="HMV" x:Name="IND_HMV"/>
+        <local:MotionStatusIndicator MotionStatus="MDN" x:Name="IND_MDN"/>
+        <local:MotionStatusIndicator MotionStatus="DIR" x:Name="IND_DIR"/>
+        <local:MotionStatusIndicator MotionStatus="DEC" x:Name="IND_DEC"/>
+        <local:MotionStatusIndicator MotionStatus="ACC" x:Name="IND_ACC"/>
+        <local:MotionStatusIndicator MotionStatus="VM" x:Name="IND_VM"/>
+        <local:MotionStatusIndicator MotionStatus="CSTP" x:Name="IND_CSTP"/>
+    </DockPanel>
+</UserControl>

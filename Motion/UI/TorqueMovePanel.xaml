@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="MotionControllers.UI.TorqueMovePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MotionControllers.UI"
+             mc:Ignorable="d" >
+    <Grid>
+        <Border CornerRadius="5" BorderBrush="#DDDDDD" BorderThickness="1" Width="283" Height="257" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,10,0,0">
+            <Grid Margin="1,-1,-1,1">
+                <GroupBox Header="Option Initail Torque Pattern" Width="262" Height="96" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="9,9,0,0">
+                    <Grid>
+                        <Button x:Name="BTN_Set_UserTorque" Content="Set User Torque(0.1%)" Click="BTN_Stop_Click" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="139"/>
+                        <TextBox x:Name="TBX_UserTorque" Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="154,10,0,0"/>
+                        <Button x:Name="BTN_Set_ActuallTorque" Content="Set Actual Torque(0.1%)" Click="BTN_Stop_Click" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TBX_ActualTorque" Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="154,42,0,0"/>
+                    </Grid>
+
+                </GroupBox>
+                <GroupBox Header="Option Target Torque Time Pattern"  Width="262" Height="74" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,110,0,0">
+                    <Grid>
+                        <RadioButton Content="Slope" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top"/>
+                        <RadioButton Content="Reach Time(ms)" HorizontalAlignment="Left" Margin="87,10,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Slope/Time" HorizontalAlignment="Left" Margin="50,29,0,0" VerticalAlignment="Top"/>
+                        <TextBox Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="130,32,0,0"/>
+                    </Grid>
+
+                </GroupBox>
+                <GroupBox Header="Set Torque Parameter"  Width="262" Height="55" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,189,0,0">
+                    <Grid>
+                        <Button x:Name="BTN_StopTime" Click="BTN_Stop_Click" Content="Torque Stop Time (ms)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="139"/>
+                        <TextBox x:Name="TBX_StopTime" Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="154,10,0,0"/>
+                    </Grid>
+
+                </GroupBox>
+
+            </Grid>
+        </Border>
+        <GroupBox Header="Information Display" Width="252" Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="288,0,0,0">
+            <Grid>
+                <Label Content="Target Torque(0.1%) :" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <TextBox Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="146,13,0,0"/>
+                <Label Content="Actual Torque(0.1%) :" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top"/>
+                <Label Content="Feedback Position :" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="130"/>
+                <TextBox Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="146,43,0,0"/>
+                <TextBox Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="146,73,0,0"/>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox Header="Command Control Mode" Width="252" Height="105" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="288,126,0,0">
+            <Grid>
+                <Label Content="Mode Type :" HorizontalAlignment="Left" Margin="40,30,0,0" VerticalAlignment="Top"/>
+                <TextBox Height="19" Width="84" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="125,33,0,0"/>
+                <RadioButton x:Name="rdo_CSPMode" Content="CSP Mode" HorizontalAlignment="Left" Margin="21,10,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+                <RadioButton x:Name="rdo_CSTMode" Content="CST Mode" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+                <Label Content="Please Servo ON first!!" HorizontalAlignment="Left" Margin="60,60,0,0" VerticalAlignment="Top"/>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox Header="Motion Control"  Width="283" Height="159" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,267,0,0">
+            <Grid>
+                <GroupBox Header="Torque Move"  Width="251" Height="50" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,10,0,0">
+                    <Grid>
+                        <Button Content="Torque Move Cmd(0.1%)" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Width="144" Click="Button_Click"/>
+                        <TextBox Height="19" Width="79" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="159,0,0,7"/>
+                    </Grid>
+
+                </GroupBox>
+                <GroupBox Header="Stop Button"  Width="251" Height="62" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,65,0,0">
+                    <Grid>
+                        <Button x:Name="BTN_EMG_Stop" Content="EMG STOP" HorizontalAlignment="Left" Margin="17,0,0,0" VerticalAlignment="Center" Width="88"/>
+                        <Button x:Name="BTN_Stop" Content="STOP" HorizontalAlignment="Left" Margin="124,0,0,0" VerticalAlignment="Center" Width="88" Click="BTN_Stop_Click"/>
+                    </Grid>
+
+                </GroupBox>
+
+            </Grid>
+
+        </GroupBox>
+
+
+    </Grid>
+</UserControl>

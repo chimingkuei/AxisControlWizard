@@ -1,0 +1,45 @@
+﻿<Window x:Class="MotionControllers.UI.MotionRuleEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MotionControllers.UI"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Set to &quot;True&quot; Conditions :" Margin="10"/>
+        <ListView Grid.Row="1" Margin="10,0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="IO:" VerticalAlignment="Center"/>
+                        <ComboBox Width="100" SelectedIndex="0" Margin="4,0">
+                            <sys:String>入料上升</sys:String>
+                            <sys:String>入料前推</sys:String>
+                        </ComboBox>
+                        <TextBlock Text="Value:" VerticalAlignment="Center"/>
+                        <ComboBox Width="100" SelectedIndex="0" Margin="4,0">
+                            True
+                        </ComboBox>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <Button/>
+            <Button/>
+        </ListView>
+        <Button Content="Add" Grid.Row="2" Margin="10"/>
+        
+        <TextBlock Text="Set to &quot;False&quot; Conditions :" Grid.Column="1" Margin="10"/>
+        <ListView Grid.Row="1" Grid.Column="1" Margin="10,0"/>
+    </Grid>
+</Window>

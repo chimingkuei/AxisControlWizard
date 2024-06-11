@@ -1,0 +1,27 @@
+﻿<Window x:Class="DeepWise.Test.VariableDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeepWise.Test"
+        xmlns:UI="clr-namespace:DeepWise.Controls;assembly=dw_base"
+        xmlns:Exp="clr-namespace:DeepWise.Expression;assembly=dw_base"
+        mc:Ignorable="d"
+        Title="VariableDemo" 
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen" x:Name="this">
+    <Grid Height="309" Width="636">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="變數表" Margin="5" FontSize="20"/>
+        <Exp:VariableView Grid.Row="1" Margin="5" BorderThickness="1" BorderBrush="#646464"/>
+        <TextBlock Text="測試" Grid.Column="1" Margin="5" FontSize="20"/>
+        <UI:PropertyGrid FontSize="16" x:Name="propertyGrid" Grid.Column="1" Grid.Row="1" Margin="5" BorderThickness="1" BorderBrush="#646464"/>
+    </Grid>
+</Window>

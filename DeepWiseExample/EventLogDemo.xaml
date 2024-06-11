@@ -1,0 +1,35 @@
+﻿<Window x:Class="DeepWise.Test.EventLogDemo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeepWise.Test"
+        xmlns:UI="clr-namespace:DeepWise.Controls;assembly=dw_base"
+        mc:Ignorable="d"
+        Title="EventLogDemo" 
+        Width="800" Height="400"
+        WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="100"/>
+                    <Setter Property="Height" Value="32"/>
+                    <Setter Property="Margin" Value="10,10,0,10"/>
+                    <EventSetter Event="Click" Handler="Button_Click" />
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="btn_Error" Content="Throw Error"/>
+            <Button x:Name="btn_Info" Content="Throw Msg(Task)"/>
+            <Button x:Name="btn_Debug" Content="Throw Debug"/>
+            <Button x:Name="btn_Folder" Content="Open Folder"/>
+            <Button x:Name="btn_ThreadTest" Content="Thread Test"/>
+            <Button x:Name="btn_Clear" Content="Clear"/>
+        </StackPanel>
+        <UI:MessageLogView Grid.Row="1"/>
+    </Grid>
+</Window>

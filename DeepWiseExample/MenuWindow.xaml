@@ -1,0 +1,72 @@
+﻿<Window x:Class="DeepWise.Test.MenuWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeepWise.Test"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        mc:Ignorable="d"
+        xmlns:UI="clr-namespace:DeepWise.Controls;assembly=dw_base"
+        WindowStartupLocation="CenterScreen"
+
+        Title="DeepWise API 範例" FontSize="18" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition/>
+            <RowDefinition Height="48"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text=" 範例" VerticalAlignment="Bottom" Margin="10,0,5,0"/>
+        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" Margin="10,0,5,0" SelectionChanged="listBox_SelectionChanged"  Grid.Row="1">
+            <ListBox.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="Blue" FontSize="22" VerticalAlignment="Bottom" />
+                                                    <TextBlock Text="(" FontSize="18" Foreground="Gray"  Margin="10,0,0,0" VerticalAlignment="Center" />
+                                                    <TextBlock Text="{Binding ItemCount}" FontSize="18" Foreground="Gray"  VerticalAlignment="Center" />
+                                                    <TextBlock Text=")" FontSize="18" Foreground="Gray"  VerticalAlignment="Center" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListBox.GroupStyle>
+     
+        </ListBox>
+        <TextBlock Text=" 說明" VerticalAlignment="Bottom" Grid.Column="1" Margin="5,0,10,0"/>
+        <TextBox x:Name="tbx_Description" IsReadOnly="True" Grid.Column="1" Margin="5,0,10,0" TextWrapping="WrapWithOverflow" Grid.Row="1"/>
+
+        <WrapPanel Grid.Row="2" Grid.ColumnSpan="2" FlowDirection="RightToLeft" IsEnabled="{Binding ElementName=listBox, Path=SelectedItem ,Converter={x:Static UI:Converters.ObjectIsNotEmptyToBooleanConverter} }">
+            <Button x:Name="btn_Demo" Content="Demo"   VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8" Height="32" Width="100" Click="Button_Click_1"/>
+            <Button x:Name="btn_CsCode" Content="C# code" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8" Height="32" Width="100" Click="Button_Click_1"/>
+            <Button x:Name="btn_Xaml" Content="Xaml" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="8" Height="32" Width="100" Click="Button_Click_1"/>
+        </WrapPanel>
+    </Grid>
+    <!--<StackPanel Width="320">
+        <Button Content="EventLog" Height="64" Margin="20" Click="Button_Click"/>
+        <Button Content="PropertyGrid" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="Display" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="DisplayGDI" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="Config" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="EdgeDetection" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="Localization" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="Behavior" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+        <Button Content="SimpleWidthCalibration" Height="64" Margin="20,0,20,20" Click="Button_Click"/>
+    </StackPanel>-->
+</Window>
