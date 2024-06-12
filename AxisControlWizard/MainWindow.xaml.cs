@@ -241,6 +241,8 @@ namespace AxisControlWizard
                     {
                         // Go Home
                         Controller.Axes[0].MoveHome();
+                        await Task.Delay(150);
+                        await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
                         Controller.Axes[1].MoveHome();
                         await Task.Delay(150);
                         await Controller.Axes[1].WaitMotionStatus(MotionStatus.MDN, true);
@@ -248,21 +250,23 @@ namespace AxisControlWizard
                         DeepWise.Shapes.Point startpoint = new DeepWise.Shapes.Point(7000, -66576);
                         Controller.MoveLineAbsolute(new int[] { 1, 0 }, startpoint);
                         await Task.Delay(150);
-                        await Controller.Axes[1].WaitMotionStatus(MotionStatus.MDN, true);
                         await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
                         // Move and Continue 
+                        Cam.ContinueAcquisition();
                         int step = 30000;
                         for (int col = 0; col < 5; col++)
                         {
                             for (int row = 0; row < 5; row++)
-                            Controller.MoveLineAbsolute(new int[] { 1, 0 }, new DeepWise.Shapes.Point(startpoint.X-col*step, startpoint.Y - row * step));
-                            await Task.Delay(150);
-                            await Controller.Axes[1].WaitMotionStatus(MotionStatus.MDN, true);
-                            await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
-                            Thread.Sleep(200);
-                            Cam.OneShot();
-                            Thread.Sleep(100);
+                            {
+                                Controller.MoveLineAbsolute(new int[] { 1, 0 }, new DeepWise.Shapes.Point(startpoint.X - col * step, startpoint.Y - row * step));
+                                await Task.Delay(150);
+                                await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
+                                Thread.Sleep(200);
+                                Cam.OneShot();
+                                Thread.Sleep(100);
+                            }
                         }
+                        Cam.StopAcquisition();
                         break;
                     }
                 case nameof(Open_Image_Storage_Folder):

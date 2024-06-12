@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-F:\Temp\AxisControlWizard\AxisControlWizard\obj\Debug\
+D:\Chimingkuei\repos\AxisControlWizard\AxisControlWizard\obj\Debug\
 AxisControlWizard
 none
 false
 DEBUG;TRACE
-F:\Temp\AxisControlWizard\AxisControlWizard\App.xaml
-9-510238257
-41464866991
-71381929825
-34-250635521
+D:\Chimingkuei\repos\AxisControlWizard\AxisControlWizard\App.xaml
+995768037
+41309808239
+91617240722
+362011121057
 MainWindow.xaml;UI\ButtonStyles.xaml;UI\CheckBoxStyles.xaml;UI\ComboBoxStyles.xaml;UI\GroupBoxStyles.xaml;UI\RadioButtonStyles.xaml;UI\SliderStyles.xaml;UI\TabControlStyles.xaml;UI\TextBoxStyles.xaml;
 
-False
+True
 
