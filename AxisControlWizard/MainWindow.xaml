@@ -41,9 +41,21 @@
         <TabControl HorizontalAlignment="Left" Margin="5,3,0,0" VerticalAlignment="Top" Height="704" Width="978" Background="#FFE6F0FF">
             <TabItem Header="主畫面" Style="{StaticResource BaseTabcontrol}">
                 <Grid>
-                    <Button x:Name="Start" Style="{StaticResource BaseButton}" Margin="703,476,149,146" Content="開始" FontSize="18" Width="120" Height="50" Background="#FF3E6FB3" Click="Main_Btn_Click"/>
+                    <Button x:Name="Start" Style="{StaticResource BaseButton}" Margin="193,352,659,270" Content="開始" FontSize="18" Width="120" Height="50" Background="#FF3E6FB3" Click="Main_Btn_Click"/>
                     <Button x:Name="Open_Image_Storage_Folder" Style="{StaticResource BaseButton}" Margin="156,134,696,488" Content="開啟資料夾" FontSize="18" Width="120" Height="50" Background="#FF3E6FB3" Click="Main_Btn_Click"/>
                     <TextBox x:Name="Save_Image_Path" Style="{StaticResource BaseTextBox}" Tag="請輸入影像儲存路徑!" Margin="316,138,157,489"/>
+                    <Label x:Name="Row_Label" Content="列數︰" HorizontalAlignment="Left" Margin="438,266,0,370" Width="57" FontSize="18"/>
+                    <TextBox x:Name="Row" Style="{StaticResource BaseTextBox}" Margin="503,261,364,365"/>
+                    <Label x:Name="Row_Gap_Label" Content="列間隔︰" HorizontalAlignment="Left" Margin="420,337,0,299" Width="73" FontSize="18" RenderTransformOrigin="0.811,0.612"/>
+                    <TextBox x:Name="Row_Gap" Style="{StaticResource BaseTextBox}" Margin="503,331,364,294"/>
+                    <Label x:Name="Column_Label" Content="行數︰" HorizontalAlignment="Left" Margin="438,398,0,236" Width="57" FontSize="18"/>
+                    <TextBox x:Name="Column" Style="{StaticResource BaseTextBox}" Margin="503,393,364,231"/>
+                    <Label x:Name="Column_Gap_Label" Content="行間隔︰" HorizontalAlignment="Left" Margin="420,460,0,175" Width="73" FontSize="18"/>
+                    <TextBox x:Name="Column_Gap" Style="{StaticResource BaseTextBox}" Margin="503,456,364,169"/>
+                    <Label x:Name="Start_X_Label" Content="起始點X︰" HorizontalAlignment="Left" Margin="659,266,0,368" Width="92" FontSize="18"/>
+                    <TextBox x:Name="Start_X" Style="{StaticResource BaseTextBox}" Margin="759,261,108,364"/>
+                    <Label x:Name="Start_Y_Label" Content="起始點Y︰" HorizontalAlignment="Left" Margin="659,336,0,297" Width="92" FontSize="18"/>
+                    <TextBox x:Name="Start_Y" Style="{StaticResource BaseTextBox}" Margin="759,331,108,293"/>
                 </Grid>
             </TabItem>
             <TabItem Header="軸控" Style="{StaticResource BaseTabcontrol}">

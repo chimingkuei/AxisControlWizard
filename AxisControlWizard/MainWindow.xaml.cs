@@ -41,6 +41,18 @@ namespace AxisControlWizard
 
         [JsonProperty("Save_Image_Path_val")]
         public string Save_Image_Path_val { get; set; }
+        [JsonProperty("Row_val")]
+        public string Row_val { get; set; }
+        [JsonProperty("Row_Gap_val")]
+        public string Row_Gap_val { get; set; }
+        [JsonProperty("Column_val")]
+        public string Column_val { get; set; }
+        [JsonProperty("Column_Gap_val")]
+        public string Column_Gap_val { get; set; }
+        [JsonProperty("Start_X_val")]
+        public string Start_X_val { get; set; }
+        [JsonProperty("Start_Y_val")]
+        public string Start_Y_val { get; set; }
     }
 
     public class Model
@@ -175,7 +187,13 @@ namespace AxisControlWizard
                 Gain_val = Gain.Text,
                 ExposureTime_val = ExposureTime.Text,
                 Gamma_val = Gamma.Text,
-                Save_Image_Path_val = Save_Image_Path.Text
+                Save_Image_Path_val = Save_Image_Path.Text,
+                Row_val = Row.Text,
+                Row_Gap_val = Row_Gap.Text,
+                Column_val = Column.Text,
+                Column_Gap_val = Column_Gap.Text,
+                Start_X_val = Start_X.Text,
+                Start_Y_val = Start_Y.Text,
             };
             return serialnumber_;
         }
@@ -189,6 +207,12 @@ namespace AxisControlWizard
                 ExposureTime.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.ExposureTime_val;
                 Gamma.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Gamma_val;
                 Save_Image_Path.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Save_Image_Path_val;
+                Row.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Row_val;
+                Row_Gap.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Row_Gap_val;
+                Column.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Column_val;
+                Column_Gap.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Column_Gap_val;
+                Start_X.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Start_X_val;
+                Start_Y.Text = Parameter_info[model].Models[serialnumber].SerialNumbers.Start_Y_val;
             }
             else
             {
@@ -247,23 +271,29 @@ namespace AxisControlWizard
                         await Task.Delay(150);
                         await Controller.Axes[1].WaitMotionStatus(MotionStatus.MDN, true);
                         // Go startpoint
-                        DeepWise.Shapes.Point startpoint = new DeepWise.Shapes.Point(7000, -66576);
+                        int start_x_value = Convert.ToInt32(Start_X.Text);
+                        int start_y_value = Convert.ToInt32(Start_Y.Text);
+                        DeepWise.Shapes.Point startpoint = new DeepWise.Shapes.Point(start_x_value, start_y_value);
                         Controller.MoveLineAbsolute(new int[] { 1, 0 }, startpoint);
                         await Task.Delay(150);
                         await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
                         // Move and Continue 
                         Cam.ContinueAcquisition();
-                        int step = 30000;
-                        for (int col = 0; col < 5; col++)
+                        int row_num = Convert.ToInt32(Row.Text);
+                        int col_num = Convert.ToInt32(Column.Text);
+                        int x_step = Convert.ToInt32(Row_Gap.Text);
+                        int y_step = Convert.ToInt32(Column_Gap.Text);
+                        Cam.image_storage_path = Save_Image_Path.Text;
+                        for (int col = 0; col < col_num; col++)
                         {
-                            for (int row = 0; row < 5; row++)
+                            for (int row = 0; row < row_num; row++)
                             {
-                                Controller.MoveLineAbsolute(new int[] { 1, 0 }, new DeepWise.Shapes.Point(startpoint.X - col * step, startpoint.Y - row * step));
+                                Controller.MoveLineAbsolute(new int[] { 1, 0 }, new DeepWise.Shapes.Point(startpoint.X - col * x_step, startpoint.Y - row * y_step));
                                 await Task.Delay(150);
                                 await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
-                                Thread.Sleep(200);
+                                Thread.Sleep(500);
                                 Cam.OneShot();
-                                Thread.Sleep(100);
+                                Thread.Sleep(200);
                             }
                         }
                         Cam.StopAcquisition();
@@ -275,7 +305,6 @@ namespace AxisControlWizard
                         image_storage_path.Description = "Choose Image Storage Path";
                         image_storage_path.ShowDialog();
                         Save_Image_Path.Text = image_storage_path.SelectedPath;
-                        Cam.image_storage_path = image_storage_path.SelectedPath;
                         break;
                     }
             }
@@ -331,7 +360,7 @@ namespace AxisControlWizard
                                 if (Directory.Exists(Save_Image_Path.Text))
                                 {
                                     Cam.image_storage_path = Save_Image_Path.Text;
-                                    Cam.save_img = true;
+                                    Cam.OneShot();
                                 }
                                 else
                                 {

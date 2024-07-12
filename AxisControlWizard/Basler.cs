@@ -23,7 +23,7 @@ namespace AxisControlWizard
         public PictureBox Display = new PictureBox();
         public bool save_img;
         public string image_storage_path;
-
+        public int index = 1;
 
         private void OnImageGrabbed(Object sender, ImageGrabbedEventArgs e)
         {
@@ -63,7 +63,8 @@ namespace AxisControlWizard
                         #endregion
                         if (save_img)
                         {
-                            bitmap.Save(Path.Combine(image_storage_path, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".bmp"));
+                            bitmap.Save(Path.Combine(image_storage_path, index.ToString() + ".bmp"));
+                            index++;
                             save_img = false;
                         }
                         // Assign a temporary variable to dispose the bitmap after assigning the new bitmap to the display control.

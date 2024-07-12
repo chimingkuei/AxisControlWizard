@@ -7,7 +7,14 @@
           "Parameter2_val": "",
           "Gain_val": "10",
           "ExposureTime_val": "15000",
-          "Gamma_val": "2.03"
+          "Gamma_val": "2.03",
+          "Save_Image_Path_val": "E:\\DIP Temp\\Image Temp",
+          "Row_val": "1000",
+          "Row_Gap_val": "1000",
+          "Column_val": "1000",
+          "Column_Gap_val": "1200",
+          "Start_X_val": "70000",
+          "Start_Y_val": "-60000"
         }
       },
       {
