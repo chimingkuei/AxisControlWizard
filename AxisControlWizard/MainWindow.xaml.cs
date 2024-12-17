@@ -283,7 +283,6 @@ namespace AxisControlWizard
                         int col_num = Convert.ToInt32(Column.Text);
                         int x_step = Convert.ToInt32(Row_Gap.Text);
                         int y_step = Convert.ToInt32(Column_Gap.Text);
-                        Cam.image_storage_path = Save_Image_Path.Text;
                         for (int col = 0; col < col_num; col++)
                         {
                             for (int row = 0; row < row_num; row++)
@@ -291,8 +290,8 @@ namespace AxisControlWizard
                                 Controller.MoveLineAbsolute(new int[] { 1, 0 }, new DeepWise.Shapes.Point(startpoint.X - col * x_step, startpoint.Y - row * y_step));
                                 await Task.Delay(150);
                                 await Controller.Axes[0].WaitMotionStatus(MotionStatus.MDN, true);
-                                Thread.Sleep(500);
-                                Cam.OneShot();
+                                Mat image_copy = Cam.image.Clone();
+                                Cv2.ImWrite(System.IO.Path.Combine(Save_Image_Path.Text, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".bmp"), image_copy);
                                 Thread.Sleep(200);
                             }
                         }
@@ -359,8 +358,8 @@ namespace AxisControlWizard
                             {
                                 if (Directory.Exists(Save_Image_Path.Text))
                                 {
-                                    Cam.image_storage_path = Save_Image_Path.Text;
-                                    Cam.OneShot();
+                                    Mat image_copy = Cam.image.Clone();
+                                    Cv2.ImWrite(System.IO.Path.Combine(Save_Image_Path.Text, DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".bmp"), image_copy);
                                 }
                                 else
                                 {

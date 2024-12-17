@@ -12,71 +12,59 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using Basler.Pylon;
 using OpenCvSharp;
+using OpenCvSharp.Extensions;
 
 namespace AxisControlWizard
 {
+    enum ImageFormat
+    {
+        RGB8, Mono8, BayerRG8
+    }
+
     class Basler
     {
         public Camera camera = null;
         private PixelDataConverter converter = new PixelDataConverter();
         private Stopwatch stopWatch = new Stopwatch();
         public PictureBox Display = new PictureBox();
-        public bool save_img;
-        public string image_storage_path;
-        public int index = 1;
+
+        public int threshold { get; set; }
+        public Mat image { get; set; }
+        public ImageFormat ImageFormatType { get; set; }
 
         private void OnImageGrabbed(Object sender, ImageGrabbedEventArgs e)
         {
-            //if (!Dispatcher.CheckAccess())
-            //{
-            //    // If called from a different thread, we must use the Invoke method to marshal the call to the proper GUI thread.
-            //    // The grab result will be disposed after the event call. Clone the event arguments for marshaling to the GUI thread.
-            //    Dispatcher.BeginInvoke(new EventHandler<ImageGrabbedEventArgs>(OnImageGrabbed), sender, e.Clone());
-            //    return;
-            //}
             try
             {
-                // Acquire the image from the camera. Only show the latest image. The camera may acquire images faster than the images can be displayed.
-
-                // Get the grab result.
                 IGrabResult grabResult = e.GrabResult;
-
-                // Check if the image can be displayed.
                 if (grabResult.IsValid)
                 {
-                    // Reduce the number of displayed images to a reasonable amount if the camera is acquiring images very fast.
                     if (!stopWatch.IsRunning || stopWatch.ElapsedMilliseconds > 33)
                     {
                         stopWatch.Restart();
-
-                        Bitmap bitmap = new Bitmap(grabResult.Width, grabResult.Height, System.Drawing.Imaging.PixelFormat.Format32bppRgb);
-                        // Lock the bits of the bitmap.
-                        System.Drawing.Imaging.BitmapData bmpData = bitmap.LockBits(new System.Drawing.Rectangle(0, 0, bitmap.Width, bitmap.Height), System.Drawing.Imaging.ImageLockMode.ReadWrite, bitmap.PixelFormat);
-                        // Place the pointer to the buffer of the bitmap.
-                        converter.OutputPixelFormat = PixelType.BGRA8packed;
-                        IntPtr ptrBmp = bmpData.Scan0;
-                        converter.Convert(ptrBmp, bmpData.Stride * bitmap.Height, grabResult);
-                        bitmap.UnlockBits(bmpData);
-                        #region DIP
-                        //OpenCvSharp.Mat src = OpenCvSharp.Extensions.BitmapConverter.ToMat(bitmap);
-                        //OpenCvSharp.Mat result = src.Threshold(150, 255, OpenCvSharp.ThresholdTypes.Binary);
-                        #endregion
-                        if (save_img)
+                        Mat mat = null;
+                        switch (ImageFormatType)
                         {
-                            bitmap.Save(Path.Combine(image_storage_path, index.ToString() + ".bmp"));
-                            index++;
-                            save_img = false;
+                            case ImageFormat.RGB8:
+                                {
+                                    mat = new Mat(grabResult.Height, grabResult.Width, MatType.CV_8UC3);
+                                    converter.OutputPixelFormat = PixelType.BGR8packed;
+                                    break;
+                                }
+                            case ImageFormat.Mono8:
+                                {
+                                    mat = new Mat(grabResult.Height, grabResult.Width, MatType.CV_8UC1);
+                                    converter.OutputPixelFormat = PixelType.Mono8;
+                                    break;
+                                }
                         }
-                        // Assign a temporary variable to dispose the bitmap after assigning the new bitmap to the display control.
+                        IntPtr ptrMat = mat.Data;
+                        converter.Convert(ptrMat, mat.Step() * mat.Rows, grabResult);
+                        image = mat;
                         Bitmap bitmapOld = Display.Image as Bitmap;
-                        // Provide the display control with the new bitmap. This action automatically updates the display.
-                        Display.Image = bitmap;
-                        #region Show DIP Result
-                        //Display_Windows.Image = OpenCvSharp.Extensions.BitmapConverter.ToBitmap(result);
-                        #endregion
+                        Display.Image = mat.ToBitmap();
                         if (bitmapOld != null)
                         {
-                            // Dispose the bitmap.
                             bitmapOld.Dispose();
                         }
                     }
@@ -88,7 +76,6 @@ namespace AxisControlWizard
             }
             finally
             {
-                // Dispose the grab result if needed for returning it to the grab loop.
                 e.DisposeGrabResultIfClone();
             }
         }
@@ -148,11 +135,6 @@ namespace AxisControlWizard
             {
                 ShowException(exception);
             }
-        }
-
-        public void OneShot()
-        {
-            save_img = true;
         }
 
     }
